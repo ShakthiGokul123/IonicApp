@@ -39,7 +39,6 @@ export class CustomerService {
 
   }
   addCustomer(customer){
-    customer.id=Math.round(Math.random()*1000000)
    this.customers.push(customer);
    localStorage.setItem('customers',JSON.stringify(this.customers));
 

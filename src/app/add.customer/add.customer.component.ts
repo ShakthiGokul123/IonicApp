@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class AddCustomerComponent implements OnInit {
 list=[]
 
-customer = { id: 0, name: "", email: "", phone: "" }
+customer = { id: 1, name: "", email: "", phone: "" }
 constructor(private router:Router,private customerService: CustomerService) { }
 
 ngOnInit() {
@@ -20,6 +20,13 @@ ngOnInit() {
 
   addButton(customer) {
     this.customerService.addCustomer(customer);    
-      this.router.navigate(['/list-customer']);
+      
 }
+genarateId(){
+  this.customer.id = ++this.customer.id;
+  this.customer.name = "";
+  this.customer.email = "";
+  this.customer.phone = "";
+}
+
 }

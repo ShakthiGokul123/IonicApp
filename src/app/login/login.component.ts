@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 
@@ -18,19 +19,32 @@ password="";
 
   ngOnInit() {}
   onLogin(){
-    if(this.username==this.password){
-      this.router.navigate(['./dashboard']);
+    if(this.username ==="" && this.password ===""){
+       this.emptyAlert();
+    }
+    else if(this.username!=this.password){
+      this.loginAlert();
     }
     else{
-      this.presentAlert();
+      this.router.navigate(['./dashboard']);
     }
-   
   }
-  async presentAlert() {
+   
+  
+  async loginAlert() {
     const alert = await this.alertController.create({
       header: 'Login failed',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      message: 'username password not match.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async emptyAlert() {
+    const alert = await this.alertController.create({
+      header: 'Login failed',
+      message: 'user name or password not entered',
       buttons: ['OK']
     });
 
